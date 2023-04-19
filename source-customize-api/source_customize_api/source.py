@@ -33,7 +33,6 @@ class MyStream(HttpStream, ABC):
 
     def url_base(self) -> str:
         logging.info("==============url_base:" + self.url)
-        self._join_url(self.url, self.url)
         return self.url
 
     def next_page_token(self, response: requests.Response) -> Optional[Mapping[str, Any]]:
