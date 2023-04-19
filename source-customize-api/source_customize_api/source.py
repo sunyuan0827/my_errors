@@ -29,7 +29,7 @@ class MyStream(HttpStream, ABC):
 
     def path(self, **kwargs) -> str:
         logging.info("==============path:" + self.url)
-        return self.url
+        return ""
 
     def url_base(self) -> str:
         logging.info("==============url_base:" + self.url)
