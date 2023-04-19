@@ -8,7 +8,9 @@ from airbyte_cdk.sources.abstract_source import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http import HttpStream
 from airbyte_protocol.models import AirbyteConnectionStatus
+
 headers = {"Content-Type": "application/json"}
+
 
 class MyStream(HttpStream, ABC):
     primary_key = ""
@@ -28,10 +30,12 @@ class MyStream(HttpStream, ABC):
     def http_method(self) -> str:
         return "GET"
 
+    @property
     def path(self, **kwargs) -> str:
         logging.info("==============path:" + self.url)
         return ""
 
+    @property
     def url_base(self) -> str:
         logging.info("==============url_base:" + self.url)
         return self.url
@@ -45,6 +49,7 @@ class MyStream(HttpStream, ABC):
         else:
             return None
 
+    @property
     def request_params(self, **kwargs) -> MutableMapping[str, Any]:
         # If the stream has a "page_token" key in its state, add it to the request parameters.
         params = {}
@@ -63,10 +68,10 @@ class MyStream(HttpStream, ABC):
     def get_updated_state(self, current_stream_state: MutableMapping[str, Any], latest_record: Mapping[str, Any]):
         return {"page_token": latest_record.get("page_token")}
 
+    @property
     def stream_slices(self, stream_state: Optional[Mapping[str, Any]] = None, **kwargs) -> Iterable[Optional[Mapping[str, any]]]:
         page_token = stream_state.get("page_token") if stream_state else None
         return [{"page_token": page_token}]
-
 
 
 class SourceCustomizeAPI(AbstractSource):
