@@ -30,7 +30,6 @@ class MyStream(HttpStream, ABC):
     def http_method(self) -> str:
         return "GET"
 
-    @property
     def path(self, **kwargs) -> str:
         logging.info("==============path:" + self.url)
         return ""
@@ -60,7 +59,7 @@ class MyStream(HttpStream, ABC):
     def parse_response(self, response: requests.Response, **kwargs) -> List[Mapping]:
         # This method should return a list of records parsed from the API response.
         data = response.json()
-        records = data.get("records")
+        records = data.get("data")
         if not records:
             return []
         return records
