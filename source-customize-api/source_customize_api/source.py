@@ -24,6 +24,7 @@ class MyStream(HttpStream, ABC):
     def name(self) -> str:
         return "my_stream"
 
+    @property
     def http_method(self) -> str:
         return "GET"
 
