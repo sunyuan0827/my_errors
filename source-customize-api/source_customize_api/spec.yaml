@@ -7,10 +7,15 @@ connectionSpecification:
     - url
   additionalProperties: true
   properties:
+    http_method:
+      title: HTTP Method
+      type: string
+      description: "HTTP request method, the default is GET."
     url:
+      title: URL
       type: string
       description: "The URL for the API endpoint."
-    token:
-      title: API Token
+    headers:
+      title: API headers
       type: string
-      description: "The API token for authentication."
+      description: "The headers for the API request, it is a json format,eg:{'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQi……'}"
