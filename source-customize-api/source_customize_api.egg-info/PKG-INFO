@@ -1,7 +1,0 @@
-Metadata-Version: 2.1
-Name: source-customize-api
-Version: 0.0.0
-Summary: Source implementation for Customize Api.
-Author: Airbyte
-Author-email: contact@airbyte.io
-Provides-Extra: tests
